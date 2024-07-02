@@ -1,0 +1,10 @@
+package sec04.exam.java;
+
+public class calc {
+	void poweroff( ) {
+		
+		boolean ison = false;
+		System.out.println("전원을 끕니다");
+	}
+
+}

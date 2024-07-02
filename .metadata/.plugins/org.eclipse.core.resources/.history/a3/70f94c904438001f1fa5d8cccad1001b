@@ -1,0 +1,17 @@
+package sec04.exam.java;
+
+public class CalcExam {
+
+	public static void main(String[ ] args) {
+		poweron( );   //이건 내꺼
+		poweron( );
+		
+		calc calc = new calc( );
+		calc.poweroff( );
+	}
+
+	static void poweron() {
+		System.out.println("전원을 킵니다");
+	
+	}
+}
