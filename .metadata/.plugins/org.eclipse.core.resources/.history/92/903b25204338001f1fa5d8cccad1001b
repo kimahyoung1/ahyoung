@@ -1,0 +1,14 @@
+package sec04.exam.java;
+
+public class CalcExam {
+
+	public static void main(String[] args) {
+		poweron( );
+
+	}
+
+	static void poweron() {
+		System.out.println("전원을 킵니다");
+	
+	}
+}

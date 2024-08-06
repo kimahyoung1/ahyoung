@@ -1,0 +1,43 @@
+package chap99;
+
+import java.util.Scanner;
+
+public class 시험연습 {
+
+	public static void main(String[] args) {
+		
+	
+		Scanner scan = new Scanner(System.in);
+
+		
+//		int coffee = scan.nextInt();
+		int coffee = 1;
+		while (coffee != 0) {
+			System.out.println("어서오세요 영스 카페입니당");
+			System.out.println("메뉴를 골라주세요");
+			System.out.println("1.커피,2.주스,3.쉐이크4.디저트,0.종료");
+			break;
+
+			coffee = scan.nextInt();
+			
+				if (coffee == 1) {
+					System.out.println("커피드리겠습니다");
+				} else if (coffee == 2) {
+					System.out.println("주스드리겠습니다");
+				} else if (coffee == 3) {
+					System.out.println("쉐이크 드리겠습니다");
+				} else if (coffee == 4) {
+					System.out.println("디저트 드리겠습니다");
+				} else if (coffee == 0) {
+					System.out.println("감사합니다 다음에 또 오세요");
+				}else {
+				System.out.println("메뉴를 다시 선택해주세요");
+			}
+				//종료
+				if(coffee == 0) {					
+					coffee = 0;
+				}
+		} //while(coffee != 0 );
+
+	}
+}

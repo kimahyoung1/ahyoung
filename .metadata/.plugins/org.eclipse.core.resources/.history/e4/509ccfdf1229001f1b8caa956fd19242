@@ -1,0 +1,22 @@
+package chap99;
+
+import java.util.Scanner;
+
+public class 시험연습 {
+
+	public static void main(String[] args) {
+		// 카페 키오스크 while이용해서 만들어보기
+		int i = 1;
+		while (i <= 10) {
+			System.out.println(i);
+			i++;
+		}
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("어서오세요");
+		System.out.println("어떤 메뉴를 준비해드릴까요?")
+		System.out.println("1.아메리카노,2.카페라떼,3.모카라뗴,4.카라멜라떼,0종료");
+		
+	}
+
+}
