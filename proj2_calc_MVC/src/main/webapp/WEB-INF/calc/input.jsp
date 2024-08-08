@@ -58,6 +58,8 @@ method 의 기본값: get
 		
 		<button type="submit">SEND-post</button>
 	</form>
+	
+	전달 받은 값 : ${param.text }
 
 </body>
 </html>
