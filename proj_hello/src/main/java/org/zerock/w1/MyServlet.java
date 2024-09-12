@@ -58,6 +58,7 @@ public class MyServlet extends HttpServlet {
 		out.print("Hello Servlet");
 		out.println("</h1>");
 		
+	
 		//0~9까지
 		out.println("<hr>");  // 선
 		

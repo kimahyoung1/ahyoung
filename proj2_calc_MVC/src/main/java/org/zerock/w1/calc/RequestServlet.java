@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/RequestServlet")
 public class RequestServlet extends HttpServlet {
 
+	// 주소 가져오는거
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			System.out.println("getRemoteAddr : " + request.getRemoteAddr());
