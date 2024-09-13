@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mapper.emp 일종의 클래스명 -->
+<mapper namespace="mapper.emp">
+	<!-- 패키지명을 다 적어야함 -->
+	<select id="selectAllEmp" resultType="emp.EmpDTO">
+		select * from emp
+	</select>
+
+	<!-- java.util.HashMap : hashmap이라고 써도 알아듣는다 -->
+	<!-- java.util.Map: map -->
+	<!-- java.util.List : list -->
+	<!-- java.lang.String : string -->
+	<!-- java.lang.integer : int -->
+
+
+	<select id="selectAllEmpMap" resultType="map">
+		select * from emp0
+	</select>
+
+	<select id="selectOneEmp" resultType="emp.EmpDTO">
+		select
+		empno,ename,sal
+		from
+		emp0
+		where empno = 7788
+	</select>
+
+	<select id="selectTotalEmp" resultType="int">
+		select
+		count(*)
+		from
+		emp0
+	</select>
+
+
+	<select id="selectEnameEmp" resultType="string">
+		select
+		ename
+		from emp0
+		where empno = 7788
+	</select>
+	
+<!-- 	전달인자를 주기위해서  -->
+	<update id="updateEmp" parameterType="emp.EmpDTO">
+<!-- 	/* 주석 updateEmp */ -->
+	 
+		UPDATE
+			 emp0
+		SET 
+			ename = #{ename},
+			sal = #{sal}
+		WHERE 
+			empno = #{empno}	
+	</update>
+
+
+<!-- 		parameterType 전달인자받기(필요없다면 생략가능)
+			#{ename}처럼 마음대로 변수명을 지정했는데 안될때 
+			#{_parameter}를 사용한다
+ -->
+		<select id="selectEmpByEname" resultType="emp.EmpDTO" parameterType="string">
+		select
+			*
+		from
+			emp0
+		where
+			ename =#{_parameter}
+	</select>
+
+</mapper>
