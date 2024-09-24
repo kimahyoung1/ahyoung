@@ -27,7 +27,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	주소가 get방식 말고는 못 들어오게 막아줘
+//	주소가 get방식 말고는 못 들어오게 막아준다
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		

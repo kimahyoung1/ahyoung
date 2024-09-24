@@ -13,7 +13,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<!-- 							주소				wepapp -->
+	<!-- 							   주소				wepapp -->
 				<!-- 빨리 찾으려고 사용 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
