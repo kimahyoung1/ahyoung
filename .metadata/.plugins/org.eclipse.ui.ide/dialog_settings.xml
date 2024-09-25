@@ -109,6 +109,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\admin\Desktop\workspce_java\_proj7_spring"/>
 			<item value="C:\Users\admin\Desktop\workspce_java\project2"/>
 			<item value="D:\workspace\workspace_html\git_test\proj7_spring"/>
 		</list>
