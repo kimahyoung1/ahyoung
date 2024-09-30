@@ -6,7 +6,7 @@ public class EmpDTO {
 
 	private Integer empno;	// 사원번호
 	private String ename;	// 사원명
-	private String job;
+	private String job; // 직업
 	private Integer mgr;
 	private Date hireDate;
 	private int sal;
