@@ -46,11 +46,13 @@
 								<th>job</th>
 								<th>sal</th>
 								<th>hireDate</th>
-								<!--<th>삭제</th> -->
+								<th>삭제</th>
 							</tr>
 						</thead>
 						<tbody id="list">
-
+							<tr>
+								<td colspan="7">자료가 없습니다</td>
+							</tr>
 						</tbody>
 					</table>
 				</form>
@@ -60,25 +62,132 @@
 	<footer>휴먼</footer>
 
 	<script>
-
+	
 	window.addEventListener("load", function(){
+		getList()
+	})
+// 함수를 따로 불러올거임
+
+//cb:callback의 약자  
+function ajax(url, param, cb, method){
+		// javascript에서 false는 null, undefined, 0
+		// true는 false가 아닌것
+		if(!method) method = "get";
 		
-		const url = "listEmp";
+		const xhr = new XMLHttpRequest();
+		xhr.open(method, url);
+		xhr.setRequestHeader("Content-Type","application/json");
+		xhr.send( JSON.stringify(param) );
+		
+		if(typeof cb == "function"){
+			xhr.onload = function(){
+				cb(xhr.responseText)
+			}
+		}
+	}
+	
+	function getList(){
+		ajax("listEmp", null, drawList, "get")
+	}
+
+	function drawList(text) {
+		try{
+			const empList = JSON.parse(text);
+			
+			let html = "";
+			
+			if(empList.length == 0){
+				html = "<tr><td colspan='7'>자료가 없습니다</td></tr>"
+			} else {
+				for(let i=0; i<empList.length; i++){
+					
+					const hiredate = new Date(empList[i].hireDate)
+					const y = hiredate.getFullYear()
+					let m = hiredate.getMonth() + 1
+					if(m < 10){
+						m = "0" + m
+					}
+					const d = hiredate.getDate()
+					
+					html += `
+							<tr>
+								<td>
+									<input type="checkbox" name="check" value="\${empList[i].empno }">
+								</td>
+								<td>\${empList[i].empno}</td>
+								<td><a href="emp0?cmd=detail&empno=\${empList[i].empno }">\${empList[i].ename }</a></td>
+								<td>\${empList[i].job}</td>
+								<td>\${empList[i].sal}</td>
+								<td>
+									\${y}년 \${m}월 \${d}일
+								</td>
+								<td>
+									<button type="button" data-empno="\${empList[i].empno }" class="btnDel" id="btn_\${empList[i].empno }">삭제</button>
+								</td>
+							</tr>
+						`;
+					
+				}
+					
+			}
+			document.querySelector("#list").innerHTML = html;
+			
+			bind()
+		
+			
+			
+		}catch(e){
+			console.log("ERROR : drawList", e);
+		}
+	}
+
+	function bind(){
+		const delBtnList = document.querySelectorAll("[id^=btn_]")
+		//				const delBtnList = document.querySelectorAll(".btnDel")
+		for(let btn of delBtnList){
+			btn.addEventListener("click", function(event){
+			//	console.log(this)
+			// 	console.log(event.target)
+							
+// 				const id = event.target.getAttribute("id")
+// 				// btn_7788 : substring, split...
+				const empno = event.target.getAttribute("data-empno")
+				console.log("empno", empno)
+				
+				const data = {
+						"empno" : empno
+				}
+				ajax("deleteEmp", data, function(result){
+					if(result != 0){
+						getList()
+					} else {
+						alert("삭제에 실패했습니다.")
+					}
+				}, "delete")
+				
+			})
+		}
+	}
+	
+	
+/*
+	window.addEventListener("load", function(){
+		let url = "listEmp";
 		
 		const xhr = new XMLHttpRequest();
 		xhr.open("get", url);
 		xhr.send();
 		
 		xhr.onload = function(){
-			console.log(xhr.responseText)
 			
+			console.log(xhr.responseText)
+			let text = xhr.responseText
 			try{
-				const empList = JSON.parse(xhr.responseText);
+				const empList = JSON.parse(text);
 				
 				let html = "";
 				for(let i=0; i<empList.length; i++){
 // 					console.log(empList[i].ename)
-
 
 // 					html += '<tr>';
 // 					html += '	<td>';
@@ -93,56 +202,98 @@
 // 					html += '	</td>';
 // 					html += '</tr>';
 				
+				const hiredate = new Date(empList[i].hireDate)
+				
+				const y = hiredate.getFullYear()
+				let m = hiredate.getMonth() + 1
+				if(m < 10){
+					m = "0" + m
+				}
+				const d = hiredate.getDate()
 				
 				html += `
-					<tr>
-						<td>
-							<input type="checkbox" name="check" value="${dto.empno }">
-						</td>
-						<td>\${empList[i].empno}</td>
-						<td><a href="emp0?cmd=detail&empno=${dto.empno }">\${empList[i].ename }</a></td>
-						<td>${dto.job }</td>
-						<td>${dto.sal }</td>
-						<td>
-							<fmt:formatDate value="${dto.hireDate }" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
-						</td>
-					</tr>
-				`;
+						<tr>
+							<td>
+								<input type="checkbox" name="check" value="\${empList[i].empno }">
+							</td>
+							<td>\${empList[i].empno}</td>
+							<td><a href="emp0?cmd=detail&empno=\${empList[i].empno }">\${empList[i].ename }</a></td>
+							<td>\${empList[i].job}</td>
+							<td>\${empList[i].sal}</td>
+							<td>
+								\${y}년 \${m}월 \${d}일
+							</td>
+							<td>
+								<button type="button" data-empno="\${empList[i].empno }" class="btnDel" id="btn_\${empList[i].empno }">삭제</button>
+							</td>
+						</tr>
+					`;
 				
 				}
 				
 				document.querySelector("#list").innerHTML = html;
 				
+				const delBtnList = document.querySelectorAll("[id^=btn_]")
+// 				const delBtnList = document.querySelectorAll(".btnDel")
+				for(let btn of delBtnList){
+					btn.addEventListener("click", function(event){
+// 						console.log(this)
+						console.log(event.target)
+						
+						const id = event.target.getAttribute("id")
+						// btn_7788 : substring, split...
+						const empno = event.target.getAttribute("data-empno")
+						console.log("empno", empno)
+						
+						url = "deleteEmp"
+						const data = {
+								"empno" : empno
+						}
+						
+						const xhr2 = new XMLHttpRequest();
+						xhr2.open("delete", url);
+						xhr2.setRequestHeader("Content-Type","application/json");
+						xhr2.send( JSON.stringify(data) );
+						
+						xhr2.onload = function(){
+							
+							console.log(xhr2.responseText)
+							
+						}
+					})
+				}
+				
+				
 			}catch(e){
 				console.log("ERROR : url :", url, e);
-			}
+			}  
 		}
 		
 	})
+*/
 
+		document.querySelector("#empno").addEventListener("click", function(){
+					const orderType = document.querySelector("[name=orderType]");
+	
+					// '' > 'desc' > 'asc' > '' 처럼 세개의 값을 순환하게 만들기
+					console.log(orderType.value, orderType.value == '');
+					if(orderType.value == ''){
+					orderType.value = 'desc'
+					} else if(orderType.value == 'desc'){
+					orderType.value = 'asc'
+					} else if(orderType.value == 'asc'){
+					orderType.value = ''
+					}
+	
+					const frm = document.querySelector("#frm");
+					frm.submit();
+	
+		})
 
-	document.querySelector("#empno").addEventListener("click", function(){
-		const orderType = document.querySelector("[name=orderType]");
-		
-		// '' > 'desc' > 'asc' > '' 처럼 세개의 값을 순환하게 만들기
-		console.log(orderType.value, orderType.value == '');
-		if(orderType.value == ''){
-			orderType.value = 'desc'
-		} else if(orderType.value == 'desc'){
-			orderType.value = 'asc'
-		} else if(orderType.value == 'asc'){
-			orderType.value = ''
-		}
-		
-		const frm = document.querySelector("#frm");
-		frm.submit();
-		
-	})
+	</script>
 
-</script>
-
-</body>
-</html>
+	</body>
+	</html>
 
 
 

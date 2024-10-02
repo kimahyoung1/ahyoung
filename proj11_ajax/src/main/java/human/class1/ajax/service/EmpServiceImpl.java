@@ -22,5 +22,15 @@ public class EmpServiceImpl implements EmpService {
 		
 		return list;
 	}
+	
+	//삭제
+	@Override
+	public int deleteEmp(EmpDTO empDTO) {
+		
+//		EmpDAOImpl empDAO = new EmpDAOImpl( );
+		int  result = empDAO.deleteEmp(empDTO) ;
+		
+		return result;
+	}
 
 }
