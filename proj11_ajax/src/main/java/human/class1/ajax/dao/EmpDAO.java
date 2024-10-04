@@ -8,5 +8,11 @@ public interface EmpDAO {
 	
 	List selectEmp( );
 	
-	int deleteEmp(EmpDTO empDTO);
+	int deleteEmp(EmpDTO empDTO); 
+	
+	// 업데이트 
+	EmpDTO selectOneEmp(EmpDTO empDTO);
+	int insertEmp(EmpDTO empDTO);
+	int updateEmp(EmpDTO empDTO);
+	
 }

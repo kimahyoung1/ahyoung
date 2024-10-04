@@ -20,11 +20,31 @@ public class EmpDAOImpl implements EmpDAO {
 		return list;
 	}
 	
-	
 	@Override
 	public int deleteEmp(EmpDTO empDTO) {
 		int list = sqlSession.delete("mapper.emp.deleteEmp", empDTO);
 		return list;
 	}
+	
+	@Override
+	public int updateEmp(EmpDTO empDTO) {
+		int result = sqlSession.update("mapper.emp.updateEmp",empDTO);
+		
+		return result;
+	}
+
+	@Override
+	public EmpDTO selectOneEmp(EmpDTO empDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertEmp(EmpDTO empDTO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 }

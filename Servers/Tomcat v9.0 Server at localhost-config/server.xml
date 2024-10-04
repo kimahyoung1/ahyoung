@@ -162,7 +162,7 @@
 
       
       
-      <Context docBase="proj11_ajax" path="/ajax" reloadable="true" source="org.eclipse.jst.jee.server:proj11_ajax"/></Host>
+      <Context docBase="_proj11_ajax" path="/ajax" reloadable="true" source="org.eclipse.jst.jee.server:_proj11_ajax"/></Host>
     </Engine>
   </Service>
 </Server>

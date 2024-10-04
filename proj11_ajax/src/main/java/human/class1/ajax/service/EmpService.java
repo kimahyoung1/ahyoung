@@ -10,6 +10,9 @@ public interface EmpService {
 
 	int deleteEmp(EmpDTO empDTO);
 
+	int editEmp(EmpDTO empDTO);
+	
+//	int updateEmp(EmpDTO empdTO);
 	
 	
 }

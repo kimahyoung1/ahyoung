@@ -32,5 +32,12 @@ public class EmpServiceImpl implements EmpService {
 		
 		return result;
 	}
+	
+	// 업데이트 
+	public int editEmp(EmpDTO empDTO) {
+		int result = empDAO.updateEmp(empDTO);
+		
+		return result;
+	}
 
 }
