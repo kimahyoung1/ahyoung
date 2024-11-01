@@ -162,7 +162,8 @@
 
       
       
-      <Context docBase="user_page" path="/user_page" reloadable="true" source="org.eclipse.jst.jee.server:user_page"/><Context docBase="admin_page" path="/admin_page" reloadable="true" source="org.eclipse.jst.jee.server:admin_page"/><Context docBase="mmes_page" path="/mmes_page" reloadable="true" source="org.eclipse.jst.jee.server:mmes_page"/></Host>
+      
+      <Context docBase="gamja" path="/gamja" reloadable="true" source="org.eclipse.jst.jee.server:gamja"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -17,4 +17,8 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="human.class1.ajax.dao.EmpDAOImpl"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="project3.gamja.Kim.dto.NotiDTO"/>
+    <fullyQualifiedTypeName name="project3.gamja.Kim.dao.InfoDAO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="project3.gamja.admin.dto.NotiDTO"/>
 </qualifiedTypeNameHistroy>
